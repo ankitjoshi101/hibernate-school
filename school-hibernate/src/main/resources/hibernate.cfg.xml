@@ -6,6 +6,10 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">password123</property>
 
+        <!-- Hibernate settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+
         <!-- HikariCP Connection Pool Settings -->
         <property name="hibernate.hikari.minimumIdle">5</property>
         <property name="hibernate.hikari.maximumPoolSize">20</property>
@@ -14,22 +18,17 @@
         <property name="hibernate.hikari.connectionTimeout">30000</property>
         <property name="hibernate.hikari.poolName">HibernateHikariCP</property>
         <property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.NoJtaPlatform</property>
-g
-        <!-- Echo all executed SQL to stdout -->
-<!--        <property name="hibernate.show_sql">true</property>-->
-
-        <!-- Format SQL nicely -->
-<!--        <property name="hibernate.format_sql">true</property>-->
 
 
-        <!-- Automatically create/update tables based on entity annotations -->
-<!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <!-- Drop and re-create the database schema on startup -->
 
-        <mapping class="io.reactivestax.tradesprocessor.entity.School"/>
-        <mapping class="io.reactivestax.tradesprocessor.entity.Position"/>
-        <mapping class="io.reactivestax.tradesprocessor.entity.TradePayload"/>
-        <mapping class="io.reactivestax.tradesprocessor.entity.SecurityCustomReference"/>
+        <!-- Entity Mappings -->
+        <mapping class="io.reactivestax.entity.Students"/>
+        <mapping class="io.reactivestax.entity.Enrollments"/>
+        <mapping class="io.reactivestax.entity.Courses"/>
     </session-factory>
 </hibernate-configuration>

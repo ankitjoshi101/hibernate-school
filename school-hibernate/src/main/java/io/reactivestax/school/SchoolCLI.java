@@ -1,5 +1,11 @@
 package io.reactivestax.school;
 
+import io.reactivestax.dao.CourseDAO;
+import io.reactivestax.dao.EnrollmentDAO;
+import io.reactivestax.entity.Courses;
+import io.reactivestax.entity.Enrollments;
+
+import java.util.List;
 import java.util.Scanner;
 
 // Command-line interface for enrolling students
@@ -9,6 +15,8 @@ public class SchoolCLI {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the School Management System");
+        CourseDAO courseDAO = new CourseDAO();
+        EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
 
         while (true) {
             System.out.print("> ");
@@ -17,13 +25,19 @@ public class SchoolCLI {
 
             switch (command[0]) {
                 case "add_course":
-                    school.addCourse(command[1]);
+
+                    Courses courses = new Courses();
+                    courses.setCourseName(command[1]);
+                    courseDAO.addCourse(courses);
+                   // school.addCourse(command[1]);
                     break;
                 case "list_courses":
-                    school.listCourses();
+                    courseDAO.printAllCourses();
+                    //school.listCourses();
                     break;
                 case "enroll_student":
-                    school.enrollStudent(Integer.parseInt(command[2]), command[1], command[3]); //Input Format: enroll_student Ankit 1 Java101
+                    enrollmentDAO.enrollStudent(Long.parseLong(command[2]), command[1], command[3]);
+//                    school.enrollStudent(Integer.parseInt(command[2]), command[1], command[3]); //Input Format: enroll_student Ankit 1 Java101
                     break;
                 case "assign_grade":
                     school.assignGrade(Integer.parseInt(command[2]), command[1], Double.parseDouble(command[3])); //Input Format: assign_grade Java101 1 100

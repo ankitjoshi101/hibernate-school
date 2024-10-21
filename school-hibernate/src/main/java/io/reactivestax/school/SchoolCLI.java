@@ -25,7 +25,6 @@ public class SchoolCLI {
 
             switch (command[0]) {
                 case "add_course":
-
                     Courses courses = new Courses();
                     courses.setCourseName(command[1]);
                     courseDAO.addCourse(courses);

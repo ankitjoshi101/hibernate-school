@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import java.util.NoSuchElementException;
+
 public class School {
 
     private School(){
@@ -28,6 +30,15 @@ public class School {
         if (transaction != null && transaction.getStatus() == TransactionStatus.ACTIVE) {
             transaction.rollback();
         }
+    }
+
+    public static Courses getCourses(String courseName, Session session) {
+        Courses course = School.getCourseWithName(courseName, session);
+
+        if(course ==null){
+            throw new NoSuchElementException("Course Does Not Exist");
+        }
+        return course;
     }
 
 }

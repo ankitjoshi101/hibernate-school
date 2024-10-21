@@ -23,11 +23,7 @@ public class EnrollmentDAO {
             try(Session session = HibernateUtil.getSessionFactory().openSession()){
                 transaction = session.beginTransaction();
 
-                Courses course = School.getCourseWithName(courseName, session);
-
-                if(course ==null){
-                    throw new NoSuchElementException("Course Does Not Exist");
-                }
+                Courses course = School.getCourses(courseName, session);
 
                 Students student = session.get(Students.class, studentId);
                 if(student==null){
@@ -49,4 +45,6 @@ public class EnrollmentDAO {
 
             }
         }
+
+
 }

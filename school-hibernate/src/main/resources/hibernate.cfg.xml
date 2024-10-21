@@ -30,5 +30,6 @@
         <mapping class="io.reactivestax.entity.Students"/>
         <mapping class="io.reactivestax.entity.Enrollments"/>
         <mapping class="io.reactivestax.entity.Courses"/>
+        <mapping class="io.reactivestax.entity.Grades"/>
     </session-factory>
 </hibernate-configuration>
